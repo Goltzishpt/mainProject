@@ -16,7 +16,7 @@ class Calculator(Frame):
             "7", "8", "9", "/",
             "4", "5", "6", "+",
             "1", "2", "3", "-",
-            "+/-", "0", "%", ","
+            "+/-", "0", "%", "."
         ]
         x = 10
         y = 90
@@ -33,13 +33,14 @@ class Calculator(Frame):
 
 
     def logicalc(self, operation):
+        if operation.isdigit:
+            self.formula
         if operation == 'C':
             self.formula = ''
         elif operation == 'DEL':
             self.formula = self.formula[0:-1]
         elif operation == '=':
             self.formula = str(eval(self.formula))
-
         else:
             if self.formula == '0':
                 self.formula = ''
