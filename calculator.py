@@ -2,9 +2,12 @@ from tkinter import *
 
 
 class Calculator(Frame):
+    global activeStr
+    global stack
     def __init__(self):
         super(Calculator, self).__init__(window)
         self.build()
+
 
     def build(self):
         self.formula = "0"
@@ -32,15 +35,15 @@ class Calculator(Frame):
                 y += 70
 
 
-    def logicalc(self, operation):
+    def logicalc(self, operation, x, y):
         if operation.isdigit:
-            self.formula
+            x += str(self.formula)
         if operation == 'C':
             self.formula = ''
         elif operation == 'DEL':
             self.formula = self.formula[0:-1]
         elif operation == '=':
-            self.formula = str(eval(self.formula))
+            self.formula = x
         else:
             if self.formula == '0':
                 self.formula = ''
