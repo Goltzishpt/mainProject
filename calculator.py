@@ -1,15 +1,34 @@
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
-from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QMenu, QLabel
+from PyQt5.QtGui import QIcon, QActionEvent
+
 
 class Calculator(QWidget):
 
     def __init__(self):
+        global digit
+        digit = '0'
         super(Calculator, self).__init__()
+        self.initUI(digit)
+        self.btn1.clicked.connect(self.onClick)
 
-        self.initUI()
+    def onClick(self):
+        digit = '1'
+        print(digit)
+        self.lbl.setText('1')
 
-    def initUI(self):
+    def initUI(self, digit):
+
+        self.lbl = QLabel(digit, self)
+        self.lbl.move(30, 50)
+        btns = ["C", "DEL", "*", "=",
+                "7", "8", "9", "/",
+                "4", "5", "6", "+",
+                "1", "2", "3", "-",
+                "0", "%", "."]
+
+
+
         btnC = QPushButton('C', self)
         btnC.setGeometry(15, 100, 80, 80)
         btnDel = QPushButton('del', self)
@@ -37,8 +56,10 @@ class Calculator(QWidget):
         btnPlus = QPushButton('+', self)
         btnPlus.setGeometry(255, 260, 80, 80)
 
-        btn1 = QPushButton('1', self)
-        btn1.setGeometry(15, 340, 80, 80)
+        self.btn1 = QPushButton('1', self)
+        self.btn1.setGeometry(15, 340, 80, 80)
+
+
         btn2 = QPushButton('2', self)
         btn2.setGeometry(95, 340, 80, 80)
         btn3 = QPushButton('3', self)
@@ -57,6 +78,7 @@ class Calculator(QWidget):
         self.setGeometry(300, 300, 350, 515)
         self.setWindowIcon(QIcon('imgCalc.png'))
         self.show()
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
